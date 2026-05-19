@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 ##slurm sim 3
-source("count3_functions.R")
+source("sim_functions.R")
 
 
 
