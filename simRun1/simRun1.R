@@ -53,6 +53,8 @@ loglik[3,1] = tempF$loglik
 time[5] = system.time({ tempC = EMC(par=c(st.lam, st.theta, as,bs), cdat=cdat, atol=1e-2, maxiter = 1000)}, gcFirst=TRUE)[3]
 mle[5,]= tempC$mle
 loglik[5,1] = tempC$loglik
+
+print(mle)
       
 ######the fixed cases
 n.lik = create.loglikn2(cdat,ndat)
@@ -86,6 +88,22 @@ tau.sd[4] = sqrt(var.tau(FN*nparts, par = mle[4,]))
 FC = fisherInfC(mle[5,], nreps=nreps)
 asym.sd[5,] = sqrt(diag(solve(nparts*FC)))
 tau.sd[5] = sqrt(var.tau(FC*nparts, par = mle[5,]))
+
+rownames(asym.sd) = c("Plan Y", "Plan NF", "Plan F", "Plan N", "Plan C")
+colnames(asym.sd) = c("lambda", "theta", "alpha","beta")
+rownames(mle) = c("Plan Y", "Plan NF", "Plan F", "Plan N", "Plan C")
+colnames(mle) = c("lambda", "theta", "alpha","beta")
+tau.sd = data.frame(tau.sd)
+rownames(tau.sd) = c("Plan Y", "Plan NF", "Plan F", "Plan N", "Plan C")
+
+cat("These are the parameter estimates:\n")
+round(mle, 4)
+
+cat("The asymptotic standard deviation for each parameter for each plan:\n")
+round(asym.sd, 4)
+
+cat("The asymptotic standard deviation for tau for each plan:\n")
+round(tau.sd, 4)
 
 # save(mle, loglik, time, file="simRun1Fit.Rdata")
 
