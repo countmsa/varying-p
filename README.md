@@ -2,7 +2,7 @@ The code for the results in the paper 'Assessing count measurement systems with 
 
 
 ##Simulation Run
-We provide an example simulation run as this will only take seconds to run. To run one replication of combination $(\lambda, \theta, \alpha, \beta)$ = $(3,0.1,9,3)$ for $s=50$ and $r=4$, access the file "sim1run_50r4.R" in the folder "sim1run". The data and necessary source files are also in the folder "sim1run". After running this file, the results can be found in the following objects:
+We provide an example simulation run as this will run quickly. The optimization for all plans will run in under 30 seconds and the Fisher informations will run in approximately 30 seconds - 1 minute. In the simulation study, we perform 1000 replicates for each combination. To run one replication of combination $(\lambda, \theta, \alpha, \beta)$ = $(3,0.1,9,3)$ for $s=50$ and $r=4$, access the file "sim1run.R" in the folder "sim1run". The data and necessary source files are also in the folder "sim1run". After running this file, the results can be found in the following objects:
 
 'mle' a 5x4 matrix where each row is a plan in the order of Y, NF, F, N, C, and the columns are the parameters in order of $\lambda, \theta, \alpha, \beta$.
 
