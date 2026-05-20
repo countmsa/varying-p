@@ -33,7 +33,8 @@ bs = max(as*(1-ms)/ms, 1.05)
 mndat = mean(cdat)
 mfdat = mean(fdat)
       
-#### RUN the EM  -  Plan Order Y, NF, F, N, C     
+#### RUN the EM  -  Plan Order Y, NF, F, N, C  
+#### it will take under 30 seconds to run all 5 EMs
 time[1] = system.time({ tempY = EMY.ab(ab=c(mndat,mfdat,as,bs), zdat=zdat, ndat=ndat, fdat=fdat, nreps=nreps,maxiter=1000, atol=1e-2)}, gcFirst=TRUE)[3]
 mle[1,]     = tempY$mle
 loglik[1,1] = tempY$loglik
@@ -69,6 +70,7 @@ loglik[5,2] = em.temp$loglik
       
 
 ##Asymptotic standard deviations for each parameter and tau
+##It will take approx. 30 seconds - 1 minute for all Fisher informations to complete
 FY = fisherInfY.ab(mle[1,], nreps=4)
 asym.sd[1,] = sqrt(diag(solve(nparts*FY)))
 tau.sd[1] = sqrt(var.tau(FY*nparts, par = mle[1,]))
